@@ -1,6 +1,6 @@
 import Description from "./Description";
 import CodeGenerator from "./GeneratorCode";
-import RunCode from "./RunCode";
+import Instructions from "./Instructions";
 import Title from "./Title";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div>
       <Title />
       <Description />
-      <RunCode />
+      <Instructions />
       <CodeGenerator />
     </div>
   );
