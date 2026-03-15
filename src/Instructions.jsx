@@ -12,6 +12,7 @@ function Instructions() {
             placeholder="Blue ball jumping"
             onChange={ (event) => handleChange(event) }
             value={ value }
+            rows={ 3 }
         ></textarea>
     )
 }

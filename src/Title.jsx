@@ -1,6 +1,6 @@
 function Title() {
     return (
-        <h1>AI-POWERED CSS GENERATOR ⚡️</h1>
+        <h1>AI-POWERED <span>CSS GENERATOR</span> ⚡️</h1>
     )
 }
 
