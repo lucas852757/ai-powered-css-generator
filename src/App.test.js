@@ -104,7 +104,6 @@ describe("Renders App page.", () => {
 
     it('When the button is clicked, the code is displayed in the code viewer.', async () => {
         const instructions = 'Blue ball jumping.';
-        const mockSetValue = jest.fn();
         const generatedCode = '<style>.ball { background-color: blue; animation: jump 2s infinite; } @keyframes jump { 0% { transform: translateY(0); } 50% { transform: translateY(-50px); } 100% { transform: translateY(0); } }</style><div class="ball"></div>';
         codeFetcher.mockResolvedValue(generatedCode);
 
