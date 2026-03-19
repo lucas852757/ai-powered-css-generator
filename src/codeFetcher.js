@@ -19,7 +19,7 @@ async function codeFetcher(userText) {
     max_tokens: 1000,
     model: modelName
   });
-
+  
   return response.choices[0].message.content;
 
 }
