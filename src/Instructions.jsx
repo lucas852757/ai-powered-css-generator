@@ -1,11 +1,13 @@
 import { useState } from "react";
 
-function Instructions() {
+function Instructions({ propSetInstructions }) {
+    
     const [value, setValue] = useState('');
 
     const handleChange = ({ target }) => {
         const { value } = target;
         setValue(value);
+        propSetInstructions(value);
     }
     return (
         <textarea data-testid="textaria"

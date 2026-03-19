@@ -54,3 +54,17 @@ button {
     margin-top: 10px;
     cursor: pointer;
 }
+
+.code-viewer {
+    background: #141419;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 14px;
+    color: #34d399;
+    line-height: 2;
+    overflow: auto;
+    min-height: 300px;
+    max-width: 300px;
+
+}
