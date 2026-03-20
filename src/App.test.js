@@ -5,6 +5,8 @@ import codeFetcher from "./codeFetcher";
 import userEvent from "@testing-library/user-event";
 import CodeGenerator from "./CodeGenerator";
 
+import Action from "./Action";
+
 jest.mock("./codeFetcher");
 
 describe("Renders App page.", () => {
@@ -123,4 +125,30 @@ describe("Renders App page.", () => {
         expect(codeViewer).toHaveTextContent(generatedCode);
 
     })
+
+    it('When the button is clicked, the code is executed in the browser.', async () => {
+
+        const instructions = 'Blue ball jumping.';
+        const generatedCode = '<style>.ball { background-color: blue; animation: jump 2s infinite; } @keyframes jump { 0% { transform: translateY(0); } 50% { transform: translateY(-50px); } 100% { transform: translateY(0); } }</style><div class="ball"></div>';
+        codeFetcher.mockResolvedValue(generatedCode);
+
+        render(
+            <>
+                <CodeGenerator propInstructions={instructions} propSetCodeViewerValue={generatedCode} />
+                <Action propCodeViewerValue={generatedCode} />
+            </>
+        );
+
+        const button = screen.getByRole('button', { name: 'Code generator' });
+        const user = userEvent.setup();
+        await user.click(button);
+
+        const iframe = screen.getByTestId("iframe");
+
+        expect(codeFetcher).toHaveBeenCalledWith(instructions);
+        expect(iframe).toBeInTheDocument();
+        expect(iframe).toHaveAttribute("title", "Code Preview");
+        expect(iframe).toHaveAttribute("srcDoc", generatedCode );
+    })
+
 })

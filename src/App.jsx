@@ -4,6 +4,7 @@ import Description from "./Description";
 import CodeGenerator from "./CodeGenerator";
 import Instructions from "./Instructions";
 import Title from "./Title";
+import Action from "./Action";
 import "./index.css"
 
 function App() {
@@ -15,7 +16,10 @@ function App() {
       <Description />
       <Instructions propSetInstructions={setInstructions} />
       <CodeGenerator propInstructions={instructions} propSetCodeViewerValue={setCodeViewerValue} />
-      <CodeViewer propCodeViewerValue={codeViewerValue} />
+      <div className="view">
+        <CodeViewer propCodeViewerValue={codeViewerValue} />
+        <Action propCodeViewerValue={codeViewerValue} />
+      </div>
     </div>
   );
 }

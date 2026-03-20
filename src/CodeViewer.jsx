@@ -1,10 +1,12 @@
 function CodeViewer({ propCodeViewerValue }) {
    
     return (
-        <>
-            <h2>Generated Code:</h2>
-            <p className="code-viewer" data-testid="code-viewer">{ propCodeViewerValue }</p>
-        </>
+        <div className="code-viewer-container">
+            <div className="direction-view">
+                <h2>Generated Code</h2>
+                <p className="code-viewer" data-testid="code-viewer">{ propCodeViewerValue }</p>
+            </div>
+        </div>
     )
 }
 
