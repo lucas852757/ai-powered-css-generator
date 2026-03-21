@@ -65,12 +65,14 @@ button {
     line-height: 2;
     overflow: auto;
     min-height: 360px;
+    max-height: 400px;
     width: 100%;
     min-width: 0;
 }
 .code-result {
     width: 100%;
     min-height: 360px;
+    max-height: 400px;
     border: 1px solid #27272a;
     border-radius: 12px;
     background: #141419;
