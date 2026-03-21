@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# AI-Powered CSS Generator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A small React app to generate HTML/CSS from text instructions using GitHub AI/OpenAI inference.
 
-## Available Scripts
+## 🚀 Overview
 
-In the project directory, you can run:
+This app lets a user type a short visual instruction (for example, "blue ball jumping"), then clicks "Code generator" and receives a pure HTML + CSS answer from an AI model. The app shows:
 
-### `npm start`
+- raw generated code in a viewer (`CodeViewer`)
+- live preview in an iframe (`Action`)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Main flow
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- `Title`: app title
+- `Description`: short app instruction text
+- `Instructions`: user prompt input
+- `CodeGenerator`: fetches code from AI at `codeFetcher.js`
+- `CodeViewer`: shows generated snippet
+- `Action`: renders `srcDoc` in `iframe`
 
-### `npm test`
+## 🧩 Project structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `src/App.jsx` : orchestrates the UI state
+- `src/Instructions.jsx` : prompt textarea
+- `src/CodeGenerator.jsx` : triggers AI generation
+- `src/codeFetcher.js` : OpenAI/GitHub inference request
+- `src/CodeViewer.jsx` : displays generated code
+- `src/Action.jsx` : iframe preview
+- `src/index.css` : application styles
 
-### `npm run build`
+## ⚙️ Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js 18+ (or compatible)
+- npm
+- GitHub AI token via `REACT_APP_GITHUB_TOKEN`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Setup and run
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Install dependencies:
 
-### `npm run eject`
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Add your token (in `.env` or environment):
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+REACT_APP_GITHUB_TOKEN=your_token_here
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Start development server:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm start
+```
 
-## Learn More
+4. Open: `http://localhost:3000`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🧪 Scripts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `npm start`
+- `npm run build`
+- `npm test`
+- `npm run eject`
 
-### Code Splitting
+## 📡 codeFetcher behavior
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+`src/codeFetcher.js` uses:
 
-### Analyzing the Bundle Size
+- endpoint: `https://models.github.ai/inference`
+- model: `openai/gpt-4o`
+- system prompt: strict "HTML + CSS only" response format
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+It sends the user text from `Instructions` to AI and returns `response.choices[0].message.content`.
 
-### Making a Progressive Web App
+## 🔧 Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Must use `REACT_APP_GITHUB_TOKEN`, otherwise API fails.
+- If preview is empty, confirm generated content is not blank and `CodeViewer` got the response.
+- This is a proof-of-concept generator; you can extend with history, syntax highlighting, and saving.
 
-### Advanced Configuration
+## 📦 Improvements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- add prompt history and favorites
+- handle generation loading state and errors elegantly
+- use `PrismJS`/`Monaco` for code highlighting
+- limit max token usage and prompt length
 
-### Deployment
+## 📝 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
