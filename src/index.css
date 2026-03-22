@@ -64,10 +64,11 @@ button {
     color: #34d399;
     line-height: 2;
     overflow: auto;
-    min-height: 360px;
+    height: 360px;
     width: 100%;
     min-width: 0;
 }
+
 .code-result {
     width: 100%;
     min-height: 360px;

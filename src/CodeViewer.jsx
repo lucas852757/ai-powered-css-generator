@@ -4,7 +4,7 @@ function CodeViewer({ propCodeViewerValue }) {
         <div className="code-viewer-container">
             <div className="direction-view">
                 <h2>Generated Code</h2>
-                <p className="code-viewer" data-testid="code-viewer">{ propCodeViewerValue }</p>
+                <pre className="code-viewer" data-testid="code-viewer">{ propCodeViewerValue }</pre>
             </div>
         </div>
     )
